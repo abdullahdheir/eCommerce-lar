@@ -1,22 +1,16 @@
 <div class="container left-sidebar">
     <div class="wrap-breadcrumb">
         <ul>
-            <li class="item-link"><a href="#" class="link">home</a></li>
-            <li class="item-link"><span>shop</span></li>
+            <li class="item-link"><a href="{{ route('index') }}" class="link">home</a></li>
+            <li class="item-link"><span>Category</span></li>
+            <li class="item-link"><span>{{ $cateory->name }}</span></li>
         </ul>
     </div>
     <div class="row">
         <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
-            <div class="banner-shop">
-                <a href="#" class="banner-link">
-                    <figure>
-                        <img src="{{ asset('assets/images/shop-banner.jpg') }}" alt="" />
-                    </figure>
-                </a>
-            </div>
 
             <div class="wrap-shop-control">
-                <h1 class="shop-title">Digital & Electronics</h1>
+                <h1 class="shop-title">{{ $cateory->name }}</h1>
 
                 <div class="wrap-right">
                     <div class="sort-item orderby">
@@ -55,25 +49,25 @@
 
             <div class="row">
                 <ul class="product-list grid-products equal-container">
-                    @foreach ($products as $product)
+                    @foreach ($cat_products as $cat_product)
                         <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
                             <div class="product product-style-3 equal-elem">
                                 <div class="product-thumnail">
-                                    <a href="{{ route('details', ['slug' => $product->slug]) }}"
-                                        title="{{ $product->short_description }}">
+                                    <a href="{{ route('details', ['slug' => $cat_product->slug]) }}"
+                                        title="{{ $cat_product->short_description }}">
                                         <figure>
-                                            <img src="{{ asset('assets/images/products/' . $product->image) }}"
-                                                alt="T-Shirt Raw Hem Organic Boro Constrast Denim" />
+                                            <img src="{{ asset('assets/images/products/' . $cat_product->image) }}"
+                                                alt="{{ $cat_product->slug }}" />
                                         </figure>
                                     </a>
                                 </div>
                                 <div class="product-info">
-                                    <a href="#" class="product-name"><span>{{ $product->name }}</span></a>
+                                    <a href="#" class="product-name"><span>{{ $cat_product->name }}</span></a>
                                     <div class="wrap-price">
-                                        <span class="product-price">${{ $product->regular_price }}</span>
+                                        <span class="product-price">${{ $cat_product->regular_price }}</span>
                                     </div>
                                     <a href="#" class="btn add-to-cart"
-                                        wire:click.prevent="store('{{ $product->id }}','{{ $product->name }}','{{ $product->regular_price }}')">Add
+                                        wire:click.prevent="store('{{ $cat_product->id }}','{{ $cat_product->name }}','{{ $cat_product->regular_price }}')">Add
                                         To Cart</a>
                                 </div>
                             </div>
@@ -83,7 +77,7 @@
             </div>
 
 
-            {{ $products->links() }}
+            {{ $cat_products->links() }}
 
         </div>
         <!--end main products area-->
@@ -95,8 +89,13 @@
                     <ul class="list-category">
                         @foreach ($cats as $cat)
                             <li class="category-item">
-                                <a href="{{ route('cateories', ['slug' => $cat->slug]) }}"
-                                    class="cate-link ">{{ $cat->name }}</a>
+                                @if ($cat->id == $cateory->id)
+                                    <a href="{{ route('cateories', ['slug' => $cat->slug]) }}"
+                                        class="cate-link selected">{{ $cat->name }}</a>
+                                @else
+                                    <a href="{{ route('cateories', ['slug' => $cat->slug]) }}"
+                                        class="cate-link ">{{ $cat->name }}</a>
+                                @endif
                             </li>
                         @endforeach
                     </ul>

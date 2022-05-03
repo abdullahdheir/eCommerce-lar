@@ -1,19 +1,23 @@
 <div class="container left-sidebar">
     <div class="wrap-breadcrumb">
         <ul>
-            <li class="item-link"><a href="#" class="link">home</a></li>
-            <li class="item-link"><span>shop</span></li>
+            <li class="item-link"><a href="{{ route('index') }}" class="link">home</a></li>
+            @if ($category != null)
+                <li class="item-link"><a href="{{ route('cateories', ['slug' => $category->slug]) }}"></a></li>
+            @else
+                @if (isset($_GET['search']))
+                    <li class="item-link">{{ $_GET['search'] }}</li>
+                @endif
+            @endif
         </ul>
     </div>
     <div class="row">
         <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
-            <div class="banner-shop">
-                <a href="#" class="banner-link">
-                    <figure>
-                        <img src="{{ asset('assets/images/shop-banner.jpg') }}" alt="" />
-                    </figure>
-                </a>
-            </div>
+            {{-- <div class="banner-shop"> --}}
+            @if (isset($_GET['search']))
+                <h4>Result For Search : <strong>{{ $_GET['search'] }} </strong></h4>
+            @endif
+            {{-- </div> --}}
 
             <div class="wrap-shop-control">
                 <h1 class="shop-title">Digital & Electronics</h1>
@@ -53,34 +57,40 @@
             </div>
             <!--end wrap shop control-->
 
-            <div class="row">
-                <ul class="product-list grid-products equal-container">
-                    @foreach ($products as $product)
-                        <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
-                            <div class="product product-style-3 equal-elem">
-                                <div class="product-thumnail">
-                                    <a href="{{ route('details', ['slug' => $product->slug]) }}"
-                                        title="{{ $product->short_description }}">
-                                        <figure>
-                                            <img src="{{ asset('assets/images/products/' . $product->image) }}"
-                                                alt="T-Shirt Raw Hem Organic Boro Constrast Denim" />
-                                        </figure>
-                                    </a>
-                                </div>
-                                <div class="product-info">
-                                    <a href="#" class="product-name"><span>{{ $product->name }}</span></a>
-                                    <div class="wrap-price">
-                                        <span class="product-price">${{ $product->regular_price }}</span>
+            @if ($products->count() > 0)
+                <div class="row">
+                    <ul class="product-list grid-products equal-container">
+
+                        @foreach ($products as $product)
+                            <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
+                                <div class="product product-style-3 equal-elem">
+                                    <div class="product-thumnail">
+                                        <a href="{{ route('details', ['slug' => $product->slug]) }}"
+                                            title="{{ $product->short_description }}">
+                                            <figure>
+                                                <img src="{{ asset('assets/images/products/' . $product->image) }}"
+                                                    alt="T-Shirt Raw Hem Organic Boro Constrast Denim" />
+                                            </figure>
+                                        </a>
                                     </div>
-                                    <a href="#" class="btn add-to-cart"
-                                        wire:click.prevent="store('{{ $product->id }}','{{ $product->name }}','{{ $product->regular_price }}')">Add
-                                        To Cart</a>
+                                    <div class="product-info">
+                                        <a href="#" class="product-name"><span>{{ $product->name }}</span></a>
+                                        <div class="wrap-price">
+                                            <span class="product-price">${{ $product->regular_price }}</span>
+                                        </div>
+                                        <a href="#" class="btn add-to-cart"
+                                            wire:click.prevent="store('{{ $product->id }}','{{ $product->name }}','{{ $product->regular_price }}')">Add
+                                            To Cart</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
+                            </li>
+                        @endforeach
+
+                    </ul>
+                </div>
+            @else
+                <div class="alert alert-info" style="margin:10px 0;">No Products Found</div>
+            @endif
 
 
             {{ $products->links() }}
