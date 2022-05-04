@@ -24,7 +24,7 @@ class ProductFactory extends Factory
             'regular_price' => $this->faker->numberBetween(100, 1000),
             'sale_price' => $this->faker->numberBetween(100, 1000),
             'SKU' => 'DIGI' . $this->faker->unique()->numberBetween(100, 1000),
-            'stock_status' => 'inStock',
+            'stock_status' => true,
             'featured' => $this->faker->boolean,
             'image' => 'digital_' . $this->faker->numberBetween(01, 20) . '.jpg',
             'veiws' => $this->faker->numberBetween(100, 1000),

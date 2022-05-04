@@ -1,5 +1,4 @@
 <div class="container">
-
     <div class="wrap-breadcrumb">
         <ul>
             <li class="item-link"><a href="{{ route('index') }}" class="link">home</a></li>
@@ -46,7 +45,12 @@
                     <div class="wrap-price"><span class="product-price">${{ $d_product->regular_price }}</span>
                     </div>
                     <div class="stock-info in-stock">
-                        <p class="availability">Availability: <b>{{ $d_product->stock_status }}</b></p>
+                        <p class="availability">Availability: @if ($d_product->stock_status == '1')
+                                <b>InStock</b>
+                            @else
+                                <b>OutOfStock</b>
+                            @endif
+                        </p>
                     </div>
                     <div class="quantity">
                         <span>Quantity:</span>

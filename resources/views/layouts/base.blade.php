@@ -20,6 +20,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/flexslider.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/color-01.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.9.2/tailwind.min.css"
+        integrity="sha512-l7qZAq1JcXdHei6h2z8h8sMe3NbMrmowhOl+QkP3UhifPpCW2MC4M0i26Y8wYpbz1xD9t61MLT9L1N773dzlOA=="
+        crossorigin="anonymous" />
+
     @livewireStyles
 </head>
 
@@ -200,44 +204,77 @@
                     </div>
 
                     <div class="primary-nav-section">
-                        <div class="container" style="display: flex; justify-content: space-between;">
-                            <ul class="nav primary clone-main-menu" id="mercado_main" data-menuname="Main menu">
-                                <li class="menu-item home-icon">
-                                    <a href="{{ route('index') }}" class="link-term mercado-item-title"><i
-                                            class="fa fa-home" aria-hidden="true"></i></a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="{{ route('about') }}" class="link-term mercado-item-title">About
-                                        Us</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="{{ route('shop') }}" class="link-term mercado-item-title">Shop</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="{{ route('cart') }}" class="link-term mercado-item-title">Cart</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="{{ route('checkout') }}"
-                                        class="link-term mercado-item-title">Checkout</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="{{ route('contact') }}" class="link-term mercado-item-title">Contact
-                                        Us</a>
-                                </li>
-                            </ul>
-                            <ul class="nav primary clone-main-menu" id="mercado_main" data-menuname="Main menu">
-                                <li class="menu-item">
-                                    <a href="{{ route('admin.cat') }}"
-                                        class="link-term mercado-item-title">Categories</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#" class="link-term mercado-item-title">Products</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#" class="link-term mercado-item-title">Users</a>
-                                </li>
-                            </ul>
-                        </div>
+                        @auth
+                            @if (Auth::user()->isAdmin == 1)
+                                <div class="container" style="display: flex; justify-content: space-between;">
+                                    <ul class="nav primary clone-main-menu" id="mercado_main" data-menuname="Main menu">
+                                        <li class="menu-item home-icon">
+                                            <a href="{{ route('index') }}" class="link-term mercado-item-title"><i
+                                                    class="fa fa-home" aria-hidden="true"></i></a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="{{ route('about') }}" class="link-term mercado-item-title">About
+                                                Us</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="{{ route('shop') }}" class="link-term mercado-item-title">Shop</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="{{ route('cart') }}" class="link-term mercado-item-title">Cart</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="{{ route('checkout') }}"
+                                                class="link-term mercado-item-title">Checkout</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="{{ route('contact') }}" class="link-term mercado-item-title">Contact
+                                                Us</a>
+                                        </li>
+                                    </ul>
+                                    <ul class="nav primary clone-main-menu" id="mercado_main" data-menuname="Main menu">
+                                        <li class="menu-item">
+                                            <a href="{{ route('admin.cat') }}"
+                                                class="link-term mercado-item-title">Categories</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="{{ route('admin.product') }}"
+                                                class="link-term mercado-item-title">Products</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="#" class="link-term mercado-item-title">Users</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            @else
+                                <div class="container">
+                                    <ul class="nav primary clone-main-menu" id="mercado_main" data-menuname="Main menu">
+                                        <li class="menu-item home-icon">
+                                            <a href="{{ route('index') }}" class="link-term mercado-item-title"><i
+                                                    class="fa fa-home" aria-hidden="true"></i></a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="{{ route('about') }}" class="link-term mercado-item-title">About
+                                                Us</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="{{ route('shop') }}" class="link-term mercado-item-title">Shop</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="{{ route('cart') }}" class="link-term mercado-item-title">Cart</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="{{ route('checkout') }}"
+                                                class="link-term mercado-item-title">Checkout</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="{{ route('contact') }}"
+                                                class="link-term mercado-item-title">Contact
+                                                Us</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            @endif
+                        @endauth
                     </div>
                 </div>
             </div>
@@ -563,7 +600,7 @@
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.flexslider.js') }}"></script>
     <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
-
+    <script src="{{ asset('assets/js/jquery.datepicker.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.countdown.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.sticky.js') }}"></script>
     <script src="{{ asset('assets/js/functions.js') }}"></script>

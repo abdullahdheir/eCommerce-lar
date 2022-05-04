@@ -8,12 +8,16 @@ use App\Http\Livewire\ContactComponet;
 use App\Http\Livewire\HomeComponat;
 use App\Http\Livewire\ShopComponet;
 use App\Http\Livewire\Admin\AdminDashBoardComponet;
+use App\Http\Livewire\Admin\AdminProductComponet;
 use App\Http\Livewire\Admin\Category\AddCategoryComponet;
 use App\Http\Livewire\Admin\Category\EditCategoryComponet;
+use App\Http\Livewire\Admin\Product\AddProductComponet;
+use App\Http\Livewire\Admin\Product\EditProductComponet;
 use App\Http\Livewire\AllProductComponanet;
 use App\Http\Livewire\BackSearchComponet;
 use App\Http\Livewire\CateoryComponet;
 use App\Http\Livewire\DetailsComponet;
+use App\Http\Livewire\UploadsProductComponet;
 use App\Http\Livewire\User\UserDashBoardComponet;
 use App\Http\Middleware\AuthAdmin;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +55,9 @@ Route::middleware(['auth:sanctum', 'verified', AuthAdmin::class])->group(functio
     Route::get('/admin/cat', AdminCategoryComponet::class)->name('admin.cat');
     Route::get('/admin/cat/add', AddCategoryComponet::class)->name('admin.cat.add');
     Route::get('/admin/cat/edit/{header_slug}', EditCategoryComponet::class)->name('admin.cat.edit');
+    Route::get('/admin/product', AdminProductComponet::class)->name('admin.product');
+    Route::get('/admin/product/add', AddProductComponet::class)->name('admin.product.add');
+    Route::get('/admin/product/edit/{header_slug}', EditProductComponet::class)->name('admin.product.edit');
 });
 
 // For User
