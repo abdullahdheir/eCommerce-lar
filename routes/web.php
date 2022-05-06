@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DownLoadPdf;
 use App\Http\Livewire\AboutComponet;
 use App\Http\Livewire\Admin\AdminCategoryComponet;
 use App\Http\Livewire\CartComponet;
@@ -17,6 +18,8 @@ use App\Http\Livewire\AllProductComponanet;
 use App\Http\Livewire\BackSearchComponet;
 use App\Http\Livewire\CateoryComponet;
 use App\Http\Livewire\DetailsComponet;
+use App\Http\Livewire\DownloadPDFComponet;
+use App\Http\Livewire\SearchComponet;
 use App\Http\Livewire\UploadsProductComponet;
 use App\Http\Livewire\User\UserDashBoardComponet;
 use App\Http\Middleware\AuthAdmin;
@@ -48,7 +51,12 @@ Route::get('/details/{slug}', DetailsComponet::class)->name('details');
 Route::get('/cateory-products/{slug}', CateoryComponet::class)->name('cateories');
 Route::get('/all-pro', AllProductComponanet::class)->name('dashboard');
 Route::get('/search', BackSearchComponet::class)->name('search');
+Route::get('/report', [DownLoadPdf::class, 'index'])->name('search.result');
+Route::get('/downloadPdf/products', [DownloadPDFComponet::class, 'mount'])->name('productPDF');
+Route::group(['namespace' => 'downloadPdf'], function () {
+    // Route::get('/downloadPdf/products', [DownLoadPdf::class, 'createProductPdf'])->name('productPDF');
 
+});
 // For Admin
 Route::middleware(['auth:sanctum', 'verified', AuthAdmin::class])->group(function () {
     Route::get('/admin/dashboard', AdminDashBoardComponet::class)->name('admin.dashboard');

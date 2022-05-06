@@ -7331,3 +7331,41 @@ table.shop_attributes tbody {
 .selected {
     color: #ff2832 !important;
 }
+
+/* Start Sort icon */
+.sort-cross {
+    /* color: #eee; */
+    opacity: 0;
+}
+.sort-parent {
+    cursor: pointer;
+    user-select: none;
+}
+.sort-parent:hover > .sort-cross {
+    opacity: 1;
+}
+/* End Sort icon */
+/* Start Search result  */
+.search-result {
+    position: absolute;
+    left: 0;
+    top: 37px;
+    background-color: white;
+    color: #000;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    z-index: 100;
+
+    padding-top: 5px;
+    font-size: 1.1em;
+}
+.search-result li {
+    user-select: none;
+    cursor: pointer;
+    padding: 5px 15px;
+}
+.search-result li:hover {
+    background-color: #eee;
+}
+/* End Search result  */

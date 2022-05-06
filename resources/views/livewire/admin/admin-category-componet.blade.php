@@ -17,39 +17,48 @@
             {{ Session::get('success') }}
         </div>
     @endif
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th class="text-center">Name</th>
-                    <th class="text-center">Product Count</th>
-                    <th class="text-center">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($cats as $cat)
-                    <tr class="text-center">
-                        <th>{{ $cat->id }}</th>
-                        <td>{{ $cat->name }}</td>
-                        <td>{{ $products_count[intval($cat->id)] }}</td>
-                        <td style="display: flex; justify-content:center;">
-                            <a href="{{ route('cateories', ['slug' => $cat->slug]) }}" style="margin: 0 10px;"
-                                class="btn btn-success"><i class="fa fa-eye" aria-hidden="true"></i> View</a>
-                            <a href="{{ route('admin.cat.edit', ['header_slug' => $cat->slug]) }}"
-                                style="margin: 0 10px;" class="btn btn-info"><i class="fa fa-edit"
-                                    aria-hidden="true"></i> Edit</a>
-                            <a href="#" wire:click.prevent="deleteCat('{{ $cat->id }}')" style="margin: 0 10px;"
-                                class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i>
-                                Delete</a>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-            <tfoot>
-                {{ $cats->links() }}
-            </tfoot>
-        </table>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="panel-title">All Category</span>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Product Count</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($cats as $cat)
+                            <tr class="text-center">
+                                <th>{{ $cat->id }}</th>
+                                <td>{{ $cat->name }}</td>
+                                <td>{{ $products_count[intval($cat->id)] }}</td>
+                                <td style="display: flex; justify-content:center; font-size:1.5em;">
+                                    <a href="{{ route('cateories', ['slug' => $cat->slug]) }}" style="margin: 0 10px;"
+                                        class="text-success"><i class="fa fa-eye" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="{{ route('admin.cat.edit', ['header_slug' => $cat->slug]) }}"
+                                        style="margin: 0 10px;" class="text-info"><i class="fa fa-edit"
+                                            aria-hidden="true"></i> </a>
+                                    <a href="#" wire:click.prevent="deleteCat('{{ $cat->id }}')"
+                                        style="margin: 0 10px;" class="text-danger"><i class="fa fa-times"
+                                            aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    <tfoot>
+                        {{ $cats->links() }}
+                    </tfoot>
+                </table>
+            </div>
+        </div>
     </div>
 
 </div>

@@ -4,7 +4,7 @@
 
         <nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">
 
-            <div class="wrap-pagination-info">
+            <div class="wrap-pagination-info" style="margin: 0; padding:5px; width:100%;">
                 <div>
                     <ul class="page-numbers">
                         <li>

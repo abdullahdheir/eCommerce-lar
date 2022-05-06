@@ -10,7 +10,7 @@
     }
     var MERCADO_JS = {
         init: function () {
-            this.mercado_chosen();
+            // this.mercado_chosen();
             this.mercado_clone_all_zan_menus();
             this.mercado_control_mobile_menu();
             this.mercado_control_panel();
@@ -102,7 +102,7 @@
             }
             if ($("select:not(.except-chosen)").length > 0) {
                 $("select:not(.except-chosen)").each(function () {
-                    $(this).chosen();
+                    // $(this).chosen();
                 });
             }
         },

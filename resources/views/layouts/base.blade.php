@@ -197,8 +197,8 @@
                                         class="nav-label hot-label">hot</span></li>
                                 <li class="menu-item"><a href="#" class="link-term">Top Selling</a><span
                                         class="nav-label hot-label">hot</span></li>
-                                <li class="menu-item"><a href="#" class="link-term">Top rated items</a><span
-                                        class="nav-label hot-label">hot</span></li>
+                                {{-- <li class="menu-item"><a href="#" class="link-term">Top rated items</a><span
+                                        class="nav-label hot-label">hot</span></li> --}}
                             </ul>
                         </div>
                     </div>
@@ -274,6 +274,33 @@
                                     </ul>
                                 </div>
                             @endif
+                        @else
+                            <div class="container">
+                                <ul class="nav primary clone-main-menu" id="mercado_main" data-menuname="Main menu">
+                                    <li class="menu-item home-icon">
+                                        <a href="{{ route('index') }}" class="link-term mercado-item-title"><i
+                                                class="fa fa-home" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="{{ route('about') }}" class="link-term mercado-item-title">About
+                                            Us</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="{{ route('shop') }}" class="link-term mercado-item-title">Shop</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="{{ route('cart') }}" class="link-term mercado-item-title">Cart</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="{{ route('checkout') }}"
+                                            class="link-term mercado-item-title">Checkout</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="{{ route('contact') }}" class="link-term mercado-item-title">Contact
+                                            Us</a>
+                                    </li>
+                                </ul>
+                            </div>
                         @endauth
                     </div>
                 </div>

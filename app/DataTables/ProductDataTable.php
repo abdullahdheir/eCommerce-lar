@@ -71,6 +71,7 @@ class ProductDataTable extends DataTable
             'regular_price',
             'sale_price',
             'category_id',
+            'Action',
         ];
     }
 

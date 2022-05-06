@@ -1,7 +1,8 @@
   <div class="wrap-search center-section">
       <div class="wrap-search-form">
           <form action="{{ route('search') }}" id="form-search-top" name="form-search-top">
-              <input type="text" name="search" value="" placeholder="Search here..." autocomplete="off">
+              <input type="text" wire:model='product_name' name="search" id="search-input" placeholder="Search here..."
+                  autocomplete="off">
               <button form="form-search-top" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
               <div class="wrap-list-cate">
                   {{-- <input type="hidden" name="product-cat" value="{{ $product_cat }}" id="product-cate"> --}}
@@ -15,5 +16,14 @@
                   </ul>
               </div>
           </form>
+          @isset($products)
+              <div class="search-result">
+                  <ul id="search-result">
+                      @foreach ($products as $product)
+                          <li class="list-search" data-id="{{ $product->id }}">{{ $product->name }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+          @endisset
       </div>
   </div>
